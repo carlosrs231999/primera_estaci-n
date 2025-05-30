@@ -149,7 +149,7 @@
 
       .popup .close {
         font-size: 2em;
-        top: 10px;
+        top: 15px;
         right: 15px;
       }
 
@@ -167,7 +167,7 @@
   <header>
     <h1>Estación 1: Andén 9¾</h1>
     <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
-    <audio id="bg-music" preload="auto" loop>
+    <audio id="bg-music" autoplay loop preload="auto">
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
     </audio>
   </header>
@@ -180,15 +180,15 @@
       <h3>Selecciona todos los artículos para tu viaje encantado</h3>
       <form id="form">
         <label class="option"><input type="checkbox" name="regalo"> 📜 Un objeto encantado cuya historia aún no ha sido contada.</label>
-        <label class="option"><input type="checkbox" name="regalo"> 📬 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
-        <label class="option"><input type="checkbox" name="regalo"> 🧳 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
+        <label class="option"><input type="checkbox" name="regalo"> 💌 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
+        <label class="option"><input type="checkbox" name="regalo"> 🧣 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
         <button type="submit" id="submitBtn" disabled>Estoy lista para el viaje 🚂</button>
       </form>
     </div>
   </section>
 
   <div class="popup" id="popupMsg">
-    <button class="close" onclick="popup.classList.remove('active')">&times;</button>
+    <button class="close" onclick="popup.classList.remove('active')">✖</button>
     <p>🦉 <strong>Tu lechuza ya partió y está en camino.</strong></p>
     <p>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</p>
     <p>Prepara tu corazón, lo maravilloso está por comenzar. ✨</p>
@@ -204,15 +204,6 @@
     const button = document.getElementById('submitBtn');
     const audio = document.getElementById('bg-music');
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // Requiere interacción para dispositivos móviles
-      document.body.addEventListener('click', () => {
-        if (audio.paused) {
-          audio.play().catch(() => {});
-        }
-      }, { once: true });
-    });
-
     checkboxes.forEach(cb => {
       cb.addEventListener('change', () => {
         const allChecked = [...checkboxes].every(c => c.checked);
@@ -224,6 +215,15 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       popup.classList.add('active');
+    });
+
+    // Fix para que la música suene en móviles al primer toque
+    document.addEventListener('DOMContentLoaded', () => {
+      const resumeAudio = () => {
+        audio.play().catch(() => {});
+        document.removeEventListener('click', resumeAudio);
+      };
+      document.addEventListener('click', resumeAudio);
     });
   </script>
 </body>
