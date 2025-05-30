@@ -97,14 +97,6 @@
       background-color: rgba(255, 204, 0, 0.3);
       font-weight: bold;
     }
-    .survey input[type="text"] {
-      padding: 10px;
-      width: 100%;
-      border: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      font-size: 1em;
-    }
     .survey button {
       margin-top: 20px;
       background-color: #ffcc00;
@@ -112,11 +104,13 @@
       padding: 12px 20px;
       font-size: 1em;
       border-radius: 8px;
-      cursor: pointer;
+      cursor: not-allowed;
       transition: background 0.3s ease;
+      opacity: 0.5;
     }
-    .survey button:hover {
-      background-color: #e6b800;
+    .survey button.enabled {
+      cursor: pointer;
+      opacity: 1;
     }
     .popup {
       display: none;
@@ -132,27 +126,11 @@
       box-shadow: 0 0 30px rgba(255, 204, 0, 0.6);
       z-index: 1000;
       animation: fadeIn 0.3s ease;
+      text-align: center;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translate(-50%, -60%); }
       to { opacity: 1; transform: translate(-50%, -50%); }
-    }
-    .floating-hat {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Sorting_hat.png');
-      background-repeat: no-repeat;
-      background-size: 100px;
-      animation: floatHat 20s linear infinite;
-    }
-    @keyframes floatHat {
-      0% { transform: translate(0, 100vh) rotate(0deg); opacity: 0; }
-      30% { opacity: 1; }
-      100% { transform: translate(100vw, -100vh) rotate(360deg); opacity: 0; }
     }
     footer {
       text-align: center;
@@ -184,7 +162,6 @@
   </style>
 </head>
 <body>
-  <div class="floating-hat"></div>
   <header>
     <h1>Estación 1: Andén 9¾</h1>
     <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
@@ -195,17 +172,18 @@
   </header>
   <section>
     <h2>Bienvenida a un mundo mágico</h2>
-    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa.</p>
+    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la noche de luna llena o la carta de Hogwarts un día común. Cada estación fue un hechizo lanzado con paciencia, y por fin, el reloj mágico marcó la hora de iniciar. Hoy, frente a ti, se abre una puerta oculta entre los muros de lo cotidiano. Tu compañero de aventuras ha preparado con cariño y detalles encantados este camino para que lo recorramos juntos. 🌙✨</p>
+
     <div class="survey">
       <h3>Selecciona todos los artículos para tu viaje encantado</h3>
       <form id="lechuzaForm">
-        <label class="option"><input type="checkbox" name="regalo" value="rana"> 🐸 Rana de chocolate – cada una trae una tarjeta de mago famoso, ¿cuál te tocará?</label>
-        <label class="option"><input type="checkbox" name="regalo" value="carta"> 💌 Carta de amor – la llave para empezar esta aventura mágica.</label>
-        <label class="option"><input type="checkbox" name="regalo" value="bufanda"> 🧣 Bufanda de tu casa de Hogwarts – para mantenerte cálida mientras viajas por este nuevo camino.</label>
-        <input type="text" name="direccion" placeholder="Escribe aquí tu dirección secreta" required>
-        <button type="submit">Enviar por lechuza 🦉</button>
+        <label class="option"><input type="checkbox" name="regalo" value="objeto1"> 📜 Un objeto encantado cuya historia aún no ha sido contada.</label>
+        <label class="option"><input type="checkbox" name="regalo" value="objeto2"> 🗝️ Algo que abrirá una puerta cuando llegue el momento.</label>
+        <label class="option"><input type="checkbox" name="regalo" value="objeto3"> 💌 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
+        <label class="option"><input type="checkbox" name="regalo" value="objeto4"> 🧣 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
+        <button id="viajeBtn" type="submit" disabled>Estoy lista para el viaje ✨</button>
       </form>
-      <div class="popup" id="popupMsg">🦉 ¡Lechuza en camino!</div>
+      <div class="popup" id="popupMsg">🦉 Tu lechuza partirá exactamente a las 5:30 PM del domingo 1 de junio mágico que viene. Prepara tu varita, tu carta ya está sellada con destino al corazón ✨</div>
     </div>
   </section>
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
@@ -235,11 +213,19 @@
 
     const form = document.getElementById('lechuzaForm');
     const popup = document.getElementById('popupMsg');
-    const options = document.querySelectorAll('.survey .option');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const submitBtn = document.getElementById('viajeBtn');
 
-    options.forEach(option => {
-      option.addEventListener('click', () => {
-        option.classList.toggle('selected');
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', () => {
+        const allChecked = Array.from(checkboxes).every(c => c.checked);
+        if (allChecked) {
+          submitBtn.disabled = false;
+          submitBtn.classList.add('enabled');
+        } else {
+          submitBtn.disabled = true;
+          submitBtn.classList.remove('enabled');
+        }
       });
     });
 
@@ -249,15 +235,9 @@
       setTimeout(() => {
         popup.style.display = 'none';
         form.reset();
-        options.forEach(o => o.classList.remove('selected'));
-      }, 3000);
-
-      const formData = new FormData(form);
-      fetch('https://formsubmit.co/ajax/crodriguez.salda@gmail.com', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData
-      });
+        submitBtn.disabled = true;
+        submitBtn.classList.remove('enabled');
+      }, 5000);
     });
   </script>
 </body>
