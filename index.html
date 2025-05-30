@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estación 1: Andén 9¾</title>
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3448/3448603.png"/>
   <style>
@@ -13,14 +13,10 @@
     body {
       margin: 0;
       font-family: 'HarryP', serif;
-      background: linear-gradient(to bottom, #0e0e0e, #2c2c2c);
-      background-image: url('hogwarts.gif');
+      background: url('hogwarts.gif') no-repeat center center fixed;
       background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
       color: #fdf3d4;
       line-height: 1.8;
-      letter-spacing: 0.8px;
       overflow-x: hidden;
     }
     header {
@@ -31,54 +27,84 @@
       align-items: center;
       text-align: center;
       padding: 0 20px;
-      backdrop-filter: brightness(0.4);
+      background: rgba(0,0,0,0.6);
     }
     header h1 {
-      font-size: 3.2em;
+      font-size: 3.5em;
       color: #ffcc00;
-      text-shadow: 0 0 20px black;
     }
     header p {
       font-size: 1.3em;
       max-width: 700px;
-      color: #fff;
     }
     section {
-      max-width: 850px;
-      margin: 40px auto;
-      padding: 0 20px;
-      backdrop-filter: brightness(0.4);
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+    .intro p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
     }
     .survey {
-      background-color: rgba(0,0,0,0.6);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      padding: 40px;
+      margin-top: 30px;
+      text-align: center;
+      color: #fff4d0;
+      box-shadow: 0 0 20px rgba(255,204,0,0.4);
     }
     .survey h3 {
+      font-size: 1.7em;
       color: #ffcc00;
-      font-size: 1.8em;
-      text-align: center;
+      margin-bottom: 20px;
     }
     .option {
-      margin: 15px 0;
       display: block;
       font-size: 1.2em;
+      margin: 10px auto;
+      text-align: left;
+      padding-left: 20px;
+    }
+    .option input[type="checkbox"] {
+      transform: scale(1.2);
+      margin-right: 10px;
+    }
+    .button-scroll {
+      background: url('pngtree-an-ancient-scroll-on-transparent-background-png-image_14558761.png') no-repeat center center;
+      background-size: contain;
+      width: 330px;
+      height: 120px;
+      border: none;
+      font-family: 'HarryP', serif;
+      font-size: 1.5em;
+      color: #000;
+      text-align: center;
+      padding-top: 35px;
+      margin: 30px auto 0;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .button-scroll.enabled {
+      opacity: 1;
+      cursor: pointer;
     }
     .popup {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
-      height: 100vh;
       width: 100vw;
-      background: rgba(0,0,0,0.94);
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.92);
       color: #ffcc00;
-      font-size: 1.6em;
       font-family: 'HarryP', serif;
+      font-size: 1.5em;
       text-align: center;
       padding: 40px 20px;
-      z-index: 9999;
+      z-index: 1000;
       align-items: center;
       justify-content: center;
       flex-direction: column;
@@ -86,31 +112,12 @@
     .popup.active {
       display: flex;
     }
-    button {
-      display: block;
-      margin: 30px auto 0;
-      padding: 15px 30px;
-      border: 3px solid #ffcc00;
-      border-radius: 12px;
-      background: #ffcc00;
-      color: #000;
-      font-family: 'HarryP', serif;
-      font-size: 1.3em;
-      cursor: pointer;
-      opacity: 0.5;
-      transition: 0.3s ease-in-out;
-      box-shadow: inset 0 0 10px #fff3, 0 0 15px #0008;
-    }
-    button.enabled {
-      opacity: 1;
-      cursor: pointer;
-    }
     footer {
       text-align: center;
+      font-size: 1em;
       padding: 20px;
       color: #aaa;
-      font-family: 'HarryP', serif;
-      backdrop-filter: brightness(0.4);
+      background-color: rgba(0, 0, 0, 0.6);
     }
   </style>
 </head>
@@ -118,14 +125,16 @@
   <header>
     <h1>Estación 1: Andén 9¾</h1>
     <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
-    <audio id="bg-music" autoplay loop preload="auto">
+    <audio id="bg-music" autoplay preload="auto" loop>
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
     </audio>
   </header>
 
   <section>
-    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena o la carta de Hogwarts un día común. 🌙</p>
-    <p>Y ahora, frente a ti, el reloj mágico ha sonado. El mago misterioso que susurra entre líneas ha estado preparando esta estación con amor y sortilegios, sabiendo que solo la viajera correcta sería capaz de verla. Esta es solo la primera parada de un viaje lleno de magia, corazones latiendo con emoción y destinos escritos en tinta invisible. ✨</p>
+    <div class="intro">
+      <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena o la carta de Hogwarts un día común. 🌙</p>
+      <p>Y ahora, frente a ti, el reloj mágico ha sonado. El mago misterioso que susurra entre líneas ha estado preparando esta estación con amor y sortilegios, sabiendo que solo la viajera correcta sería capaz de verla. Esta es solo la primera parada de un viaje lleno de magia, corazones latiendo con emoción y destinos escritos en tinta invisible. ✨</p>
+    </div>
 
     <div class="survey">
       <h3>Selecciona todos los artículos para tu viaje encantado</h3>
@@ -133,17 +142,16 @@
         <label class="option"><input type="checkbox" name="regalo"> 📜 Un objeto encantado cuya historia aún no ha sido contada.</label>
         <label class="option"><input type="checkbox" name="regalo"> 💌 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
         <label class="option"><input type="checkbox" name="regalo"> 🧣 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
-        <button type="submit" id="submitBtn" disabled>Estoy lista para el viaje ✨</button>
+        <button type="submit" id="submitBtn" class="button-scroll" disabled>Estoy lista para el viaje ✨</button>
       </form>
     </div>
   </section>
 
   <div class="popup" id="popupMsg">
-    🦉 <div>Tu lechuza ya partió y está en camino.</div>
+    <div>🦉 Tu lechuza ya partió y está en camino.</div>
     <div>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</div>
-    <div>Prepara tu corazón, lo maravilloso está por comenzar. ✨</div>
-    <br>
-    <div>Cuando menos lo esperes, mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</div>
+    <div>✨ Mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> que abrirá la segunda estación.</div>
+    <div>La misma persona que te invitó sabrá cuándo ha llegado el momento de entregártela. El viaje ha comenzado. ✨</div>
   </div>
 
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
@@ -170,7 +178,7 @@
         form.reset();
         button.disabled = true;
         button.classList.remove('enabled');
-      }, 9000);
+      }, 10000);
     });
   </script>
 </body>
