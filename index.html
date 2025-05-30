@@ -4,18 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Estación 1: Andén 9¾</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto&display=swap" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3448/3448603.png"/>
   <style>
+    @font-face {
+      font-family: 'HarryP';
+      src: url('HARRYP__.TTF') format('truetype');
+    }
     * {
       box-sizing: border-box;
     }
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'HarryP', serif;
       margin: 0;
       background: linear-gradient(to bottom, #0e0e0e, #2c2c2c);
       color: #fdf3d4;
       overflow-x: hidden;
+      line-height: 1.6;
     }
     header {
       background-image: url('harry-potter.jpg');
@@ -32,7 +36,6 @@
       box-shadow: inset 0 -20px 60px rgba(0, 0, 0, 0.7);
     }
     header h1 {
-      font-family: 'Cinzel', serif;
       font-size: 3.5em;
       color: #ffcc00;
       text-shadow: 0 0 20px black;
@@ -98,7 +101,10 @@
       font-weight: bold;
     }
     .survey button {
-      margin-top: 20px;
+      margin-top: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
       background-color: #ffcc00;
       border: none;
       padding: 12px 20px;
@@ -115,29 +121,33 @@
     .popup {
       display: none;
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #1e1e1e;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.95);
       color: #ffcc00;
-      padding: 20px 30px;
-      border-radius: 10px;
-      font-size: 1.4em;
-      box-shadow: 0 0 30px rgba(255, 204, 0, 0.6);
+      padding: 40px 20px;
+      border-radius: 0;
+      font-size: 1.6em;
       z-index: 1000;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.5s ease;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, -60%); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     footer {
       text-align: center;
-      font-size: 0.9em;
+      font-size: 1em;
       padding: 20px;
       color: #aaa;
       border-top: 1px solid #333;
+      background-color: #0e0e0e;
     }
     @media (max-width: 600px) {
       header h1 {
@@ -183,7 +193,7 @@
         <label class="option"><input type="checkbox" name="regalo" value="objeto4"> 🧣 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
         <button id="viajeBtn" type="submit" disabled>Estoy lista para el viaje ✨</button>
       </form>
-      <div class="popup" id="popupMsg">🦉 Tu lechuza partirá exactamente a las 5:30 PM del domingo 1 de junio mágico que viene. Prepara tu varita, tu carta ya está sellada con destino al corazón ✨</div>
+      <div class="popup" id="popupMsg">🦉 Tu lechuza ya partió y está en camino. Llegará exactamente a las 5:30 PM del domingo 1 de junio mágico que viene. Prepara tu corazón, lo maravilloso está por comenzar. ✨</div>
     </div>
   </section>
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
@@ -231,14 +241,15 @@
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
-      popup.style.display = 'block';
+      popup.style.display = 'flex';
       setTimeout(() => {
         popup.style.display = 'none';
         form.reset();
         submitBtn.disabled = true;
         submitBtn.classList.remove('enabled');
-      }, 5000);
+      }, 6000);
     });
   </script>
 </body>
 </html>
+
