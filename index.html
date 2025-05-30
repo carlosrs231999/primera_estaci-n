@@ -2,23 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Estación 1: Andén 9¾</title>
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3448/3448603.png"/>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3448/3448603.png" type="image/png" />
   <style>
     @font-face {
       font-family: 'HarryP';
       src: url('HARRYP__.TTF') format('truetype');
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
       font-family: 'HarryP', serif;
       background-color: #0e0e0e;
       color: #fdf3d4;
-      line-height: 1.6;
       overflow-x: hidden;
     }
 
@@ -26,11 +27,10 @@
       background: url('hogwarts.gif') no-repeat center center/cover;
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       text-align: center;
-      padding: 0 20px;
       box-shadow: inset 0 -20px 60px rgba(0, 0, 0, 0.7);
     }
 
@@ -69,7 +69,7 @@
     .option {
       display: block;
       font-size: 1.2em;
-      margin: 10px 0;
+      margin: 15px 0;
     }
 
     .option input {
@@ -112,37 +112,38 @@
       display: flex;
     }
 
+    .scroll-container {
+      background: url('pergamino-textura.jpg') no-repeat center center/cover;
+      padding: 40px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 700px;
+      max-height: 85vh;
+      overflow-y: auto;
+      color: #2b1e12;
+      animation: unfold 1s ease forwards;
+    }
+
+    @keyframes unfold {
+      0% {
+        transform: scaleY(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+
     .popup .close {
       position: absolute;
-      top: 20px;
+      top: 15px;
       right: 20px;
-      font-size: 2em;
+      font-size: 2.2em;
       color: #ff4444;
       background: none;
       border: none;
       cursor: pointer;
-    }
-
-    .popup-content {
-      background-image: url('pergamino-textura.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      padding: 30px;
-      border-radius: 12px;
-      max-width: 600px;
-      color: #000;
-      animation: desplegarPergamino 1s ease forwards;
-      transform-origin: top;
-      opacity: 0;
-      transform: scaleY(0);
-    }
-
-    @keyframes desplegarPergamino {
-      to {
-        transform: scaleY(1);
-        opacity: 1;
-      }
     }
 
     footer {
@@ -150,47 +151,41 @@
       padding: 30px;
       color: #888;
     }
-
-    @media screen and (max-width: 600px) {
-      header h1 { font-size: 2em; }
-      header p, .popup { font-size: 1em; }
-      .popup .close { font-size: 2em; top: 15px; right: 15px; }
-      .option { font-size: 1em; }
-      button { width: 100%; }
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>Estación 1: Andén 9¾</h1>
     <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
-    <audio id="bg-music" preload="auto">
+    <audio id="bg-music" preload="auto" loop>
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="scroll-sound">
+      <source src="pergamino.mp3" type="audio/mpeg">
     </audio>
   </header>
 
   <section>
-    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena o la carta de Hogwarts un día común. 🌙</p>
-    <p>Y ahora, frente a ti, el reloj mágico ha sonado. El mago misterioso que susurra entre líneas ha estado preparando esta estación con amor y sortilegios. ✨</p>
-
+    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo...</p>
+    <p>Y ahora, frente a ti, el reloj mágico ha sonado...</p>
     <div class="survey">
       <h3>Selecciona todos los artículos para tu viaje encantado</h3>
       <form id="form">
         <label class="option"><input type="checkbox" name="regalo"> 📜 Un objeto encantado cuya historia aún no ha sido contada.</label>
-        <label class="option"><input type="checkbox" name="regalo"> 📬 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
-        <label class="option"><input type="checkbox" name="regalo"> 🧣 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
+        <label class="option"><input type="checkbox" name="regalo"> 💌 Una carta sellada con magia...</label>
+        <label class="option"><input type="checkbox" name="regalo"> 🧳 Algo cálido que huele a hogar...</label>
         <button type="submit" id="submitBtn" disabled>Estoy lista para el viaje 🚂</button>
       </form>
     </div>
   </section>
 
   <div class="popup" id="popupMsg">
-    <button class="close" onclick="popup.classList.remove('active')">&#10006;</button>
-    <div class="popup-content">
+    <button class="close" onclick="closePopup()">&times;</button>
+    <div class="scroll-container">
       <p>🦉 <strong>Tu lechuza ya partió y está en camino.</strong></p>
       <p>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</p>
       <p>Prepara tu corazón, lo maravilloso está por comenzar. ✨</p>
-      <p>Mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</p>
+      <p>Mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación...</p>
     </div>
   </div>
 
@@ -199,11 +194,12 @@
   <script>
     const form = document.getElementById('form');
     const popup = document.getElementById('popupMsg');
-    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
     const button = document.getElementById('submitBtn');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
     const audio = document.getElementById('bg-music');
-    const pergaminoSound = new Audio('pergamino.mp3');
+    const scrollSound = document.getElementById('scroll-sound');
 
+    // Activar boton si todo está checkeado
     checkboxes.forEach(cb => {
       cb.addEventListener('change', () => {
         const allChecked = [...checkboxes].every(c => c.checked);
@@ -212,23 +208,45 @@
       });
     });
 
+    // Mostrar popup
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       popup.classList.add('active');
-      pergaminoSound.play();
-      audio.volume = 0.1;
-      setTimeout(() => { audio.volume = 1; }, 4000);
+      scrollSound.play();
+      fadeMusic();
     });
 
+    function closePopup() {
+      popup.classList.remove('active');
+      audio.volume = 1;
+    }
+
+    function fadeMusic() {
+      const fade = setInterval(() => {
+        if (audio.volume > 0.2) {
+          audio.volume -= 0.05;
+        } else {
+          clearInterval(fade);
+        }
+      }, 150);
+    }
+
+    // Delay de 3s y activación por primer toque en móvil
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => audio.play().catch(() => {}), 3000);
-      const resumeAudio = () => {
-        audio.play().catch(() => {});
-        document.removeEventListener('click', resumeAudio);
+      let startTime = Date.now();
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+      const waitToPlay = () => {
+        if (Date.now() - startTime >= 3000) {
+          audio.play().catch(() => {});
+          document.removeEventListener('click', waitToPlay);
+        }
       };
-      document.addEventListener('click', resumeAudio);
+      if (isMobile) {
+        document.addEventListener('click', waitToPlay);
+      } else {
+        setTimeout(() => audio.play().catch(() => {}), 3000);
+      }
     });
   </script>
 </body>
 </html>
-
