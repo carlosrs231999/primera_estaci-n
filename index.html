@@ -74,10 +74,12 @@
       text-align: center;
       padding: 40px 20px;
       z-index: 9999;
-      display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+    }
+    .popup.active {
+      display: flex;
     }
     button {
       display: block;
@@ -144,9 +146,9 @@
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      popup.style.display = 'flex';
+      popup.classList.add('active');
       setTimeout(() => {
-        popup.style.display = 'none';
+        popup.classList.remove('active');
         form.reset();
         button.disabled = true;
         button.classList.remove('enabled');
