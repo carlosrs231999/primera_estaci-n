@@ -86,16 +86,12 @@
       transition: all 0.3s ease;
       font-size: 1.1em;
     }
-    .survey .option input[type="radio"] {
+    .survey .option input[type="checkbox"] {
       margin-right: 10px;
       accent-color: #ffcc00;
     }
     .survey .option:hover {
       background-color: rgba(255, 255, 255, 0.15);
-    }
-    .survey .option.selected {
-      background-color: rgba(255, 204, 0, 0.3);
-      font-weight: bold;
     }
     .survey input[type="text"] {
       padding: 10px;
@@ -137,23 +133,6 @@
       from { opacity: 0; transform: translate(-50%, -60%); }
       to { opacity: 1; transform: translate(-50%, -50%); }
     }
-    .floating-hat {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Sorting_hat.png');
-      background-repeat: no-repeat;
-      background-size: 100px;
-      animation: floatHat 20s linear infinite;
-    }
-    @keyframes floatHat {
-      0% { transform: translate(0, 100vh) rotate(0deg); opacity: 0; }
-      30% { opacity: 1; }
-      100% { transform: translate(100vw, -100vh) rotate(360deg); opacity: 0; }
-    }
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -184,30 +163,27 @@
   </style>
 </head>
 <body>
-  <div class="floating-hat"></div>
   <header>
     <h1>Estación 1: Andén 9¾</h1>
-    <p>Un tren mágico espera... y solo los corazones valientes saben cuándo subirse. Esta estación no es común; es el inicio de una travesía distinta, tejida con momentos encantados, risas compartidas y tal vez, un poco de destino. 🕯️</p>
+    <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí. Entre líneas, una carta te invita a comenzar una historia que no tiene final escrito.</p>
     <button id="music-btn" title="Presiona para pausar">🔇</button>
     <audio id="bg-music" autoplay preload="auto" loop>
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
     </audio>
   </header>
   <section>
-    <h2>Bienvenida a un mundo mágico</h2>
-    <p>Aquí no hay mapas, solo magia. Este viaje no tiene dirección conocida, pero está lleno de señales encantadas. Cada estación que viene después de esta tendrá algo especial... y quizás, una carta no escrita aún, que espera ser leída a dúo. ✨</p>
+    <h2>Tu primer paso en el mundo mágico</h2>
+    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, tejida con hechizos, cartas, y aventuras inesperadas. Como invitada especial de Hogwarts, te damos la bienvenida con este pequeño cuestionario para tu kit mágico inicial:</p>
     <div class="survey">
-      <h3>¿Qué souvenir mágico quieres recibir en esta estación?</h3>
-      <form id="lechuzaForm" action="https://formsubmit.co/crodriguez.salda@gmail.com" method="POST">
-        <input type="hidden" name="_captcha" value="false">
-        <label class="option"><input type="radio" name="regalo" value="chocolate"> 🍫 Chocolate de Honeydukes – endulza tus días como lo hacía Ron, aunque algunos momentos ya empiezan a tener sabor a algo más.</label>
-        <label class="option"><input type="radio" name="regalo" value="rana"> 🐸 Rana de chocolate – cada una trae una tarjeta de mago famoso... pero si te toca la mía, prométeme que no la devuelves.</label>
-        <label class="option"><input type="radio" name="regalo" value="amor"> 🧪 Poción de Amor – su aroma cambia con la persona que amas. ¿Te atreves a olerlo?</label>
-        <label class="option"><input type="radio" name="regalo" value="bufanda"> 🧣 Bufanda de tu casa de Hogwarts – para protegerte del frío, o al menos hasta que aprendas a calentar con un solo abrazo.</label>
+      <h3>Selecciona tus artículos para el viaje encantado</h3>
+      <form id="lechuzaForm">
+        <label class="option"><input type="checkbox" name="regalo" value="rana"> 🐸 Rana de chocolate – cada una trae una tarjeta de mago famoso, ¿cuál te tocará?</label>
+        <label class="option"><input type="checkbox" name="regalo" value="carta"> ✉️ Carta de amor – la llave para empezar esta aventura mágica que aún no sabes a dónde llegará.</label>
+        <label class="option"><input type="checkbox" name="regalo" value="bufanda"> 🧣 Bufanda de tu casa de Hogwarts – para mantenerte cálida mientras viajas por este nuevo camino.</label>
         <input type="text" name="direccion" placeholder="Escribe aquí tu dirección secreta" required>
         <button type="submit">Enviar por lechuza 🦉</button>
       </form>
-      <div class="popup" id="popupMsg">🦉 ¡Lechuza en camino con algo más que tinta y papel!</div>
+      <div class="popup" id="popupMsg">🦉 ¡Lechuza en camino!</div>
     </div>
   </section>
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
@@ -229,22 +205,13 @@
 
     const form = document.getElementById('lechuzaForm');
     const popup = document.getElementById('popupMsg');
-    const options = document.querySelectorAll('.survey .option');
-
-    options.forEach(option => {
-      option.addEventListener('click', () => {
-        options.forEach(o => o.classList.remove('selected'));
-        option.classList.add('selected');
-        option.querySelector('input').checked = true;
-      });
-    });
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
       popup.style.display = 'block';
       setTimeout(() => {
         popup.style.display = 'none';
-        form.submit();
+        form.reset();
       }, 3000);
     });
   </script>
