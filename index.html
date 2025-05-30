@@ -12,6 +12,30 @@
     <h1>Estación 1: Andén 9¾</h1>
     <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
     <audio id="bg-music" preload="auto">
+      <so<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estación 1: Andén 9¾</title>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3448/3448603.png"/>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    @font-face {
+      font-family: 'HarryP';
+      src: url('HARRYP__.TTF') format('truetype');
+    }
+
+    body {
+      font-family: 'HarryP', serif;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Estación 1: Andén 9¾</h1>
+    <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
+    <audio id="bg-music" loop preload="auto">
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
     </audio>
   </header>
@@ -32,17 +56,23 @@
   </section>
 
   <div class="popup" id="popupMsg">
-    <button class="close" onclick="closePopup()">✖</button>
-    <div class="scroll">
-      <p>🦉 <strong>Tu lechuza ya partió y está en camino.</strong></p>
-      <p>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</p>
-      <p>Prepara tu corazón, lo maravilloso está por comenzar. ✨</p>
-      <p>Cuando menos lo esperes, mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</p>
+    <button class="close" id="closePopup">✖</button>
+    <div class="scroll-container">
+      <div class="scroll-paper" id="scrollPaper">
+        <p>🦉 <strong>Tu lechuza ya partió y está en camino.</strong></p>
+        <p>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</p>
+        <p>Prepara tu corazón, lo maravilloso está por comenzar. ✨</p>
+        <p>Cuando menos lo esperes, mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</p>
+      </div>
     </div>
   </div>
 
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
 
-  <script src="script.js"></script>
+  <audio id="scrollSound" preload="auto">
+    <source src="scroll-open.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
