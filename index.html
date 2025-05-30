@@ -7,7 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto&display=swap" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3448/3448603.png"/>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
@@ -25,9 +27,9 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      position: relative;
       padding: 0 5vw;
       box-shadow: inset 0 -20px 60px rgba(0, 0, 0, 0.7);
-      position: relative;
     }
     header h1 {
       font-family: 'Cinzel', serif;
@@ -58,6 +60,7 @@
       padding: 60px 5vw;
       max-width: 900px;
       margin: auto;
+      position: relative;
     }
     .survey {
       background-color: rgba(255, 255, 255, 0.08);
@@ -159,12 +162,24 @@
       border-top: 1px solid #333;
     }
     @media (max-width: 600px) {
-      header h1 { font-size: 2em; }
-      header p { font-size: 1em; }
-      .survey h3 { font-size: 1.4em; }
-      .survey .option { font-size: 0.95em; }
-      .survey button { width: 100%; }
-      section { padding: 30px 5vw; }
+      header h1 {
+        font-size: 2em;
+      }
+      header p {
+        font-size: 1em;
+      }
+      .survey h3 {
+        font-size: 1.4em;
+      }
+      .survey .option {
+        font-size: 0.95em;
+      }
+      .survey button {
+        width: 100%;
+      }
+      section {
+        padding: 30px 5vw;
+      }
     }
   </style>
 </head>
@@ -172,43 +187,34 @@
   <div class="floating-hat"></div>
   <header>
     <h1>Estación 1: Andén 9¾</h1>
-    <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
+    <p>Un tren mágico espera... y solo los corazones valientes saben cuándo subirse. Esta estación no es común; es el inicio de una travesía distinta, tejida con momentos encantados, risas compartidas y tal vez, un poco de destino. 🕯️</p>
     <button id="music-btn" title="Presiona para pausar">🔇</button>
-    <audio id="bg-music" preload="auto" loop>
+    <audio id="bg-music" autoplay preload="auto" loop>
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
     </audio>
   </header>
   <section>
     <h2>Bienvenida a un mundo mágico</h2>
-    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa.</p>
+    <p>Aquí no hay mapas, solo magia. Este viaje no tiene dirección conocida, pero está lleno de señales encantadas. Cada estación que viene después de esta tendrá algo especial... y quizás, una carta no escrita aún, que espera ser leída a dúo. ✨</p>
     <div class="survey">
       <h3>¿Qué souvenir mágico quieres recibir en esta estación?</h3>
       <form id="lechuzaForm" action="https://formsubmit.co/crodriguez.salda@gmail.com" method="POST">
         <input type="hidden" name="_captcha" value="false">
-        <label class="option"><input type="radio" name="regalo" value="chocolate"> 🍫 Chocolate de Honeydukes – endulza tus días como lo hacía Ron.</label>
-        <label class="option"><input type="radio" name="regalo" value="rana"> 🐸 Rana de chocolate – cada una trae una tarjeta de mago famoso, ¿cuál te tocará?</label>
-        <label class="option"><input type="radio" name="regalo" value="amor"> 🧪 Poción de Amor – su aroma es diferente para cada persona... ¿a qué olerá para ti?</label>
-        <label class="option"><input type="radio" name="regalo" value="bufanda"> 🧣 Bufanda de tu casa de Hogwarts – para mantenerte cálida mientras viajas por este nuevo camino.</label>
+        <label class="option"><input type="radio" name="regalo" value="chocolate"> 🍫 Chocolate de Honeydukes – endulza tus días como lo hacía Ron, aunque algunos momentos ya empiezan a tener sabor a algo más.</label>
+        <label class="option"><input type="radio" name="regalo" value="rana"> 🐸 Rana de chocolate – cada una trae una tarjeta de mago famoso... pero si te toca la mía, prométeme que no la devuelves.</label>
+        <label class="option"><input type="radio" name="regalo" value="amor"> 🧪 Poción de Amor – su aroma cambia con la persona que amas. ¿Te atreves a olerlo?</label>
+        <label class="option"><input type="radio" name="regalo" value="bufanda"> 🧣 Bufanda de tu casa de Hogwarts – para protegerte del frío, o al menos hasta que aprendas a calentar con un solo abrazo.</label>
         <input type="text" name="direccion" placeholder="Escribe aquí tu dirección secreta" required>
         <button type="submit">Enviar por lechuza 🦉</button>
       </form>
-      <div class="popup" id="popupMsg">🦉 ¡Lechuza en camino!</div>
+      <div class="popup" id="popupMsg">🦉 ¡Lechuza en camino con algo más que tinta y papel!</div>
     </div>
   </section>
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
-
   <script>
     const music = document.getElementById('bg-music');
     const btn = document.getElementById('music-btn');
-    let isPlaying = false;
-
-    document.body.addEventListener('click', () => {
-      if (!isPlaying) {
-        music.play();
-        btn.textContent = '🔇';
-        isPlaying = true;
-      }
-    }, { once: true });
+    let isPlaying = true;
 
     btn.addEventListener('click', () => {
       if (isPlaying) {
@@ -233,10 +239,12 @@
       });
     });
 
-    form.addEventListener('submit', function() {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
       popup.style.display = 'block';
       setTimeout(() => {
         popup.style.display = 'none';
+        form.submit();
       }, 3000);
     });
   </script>
