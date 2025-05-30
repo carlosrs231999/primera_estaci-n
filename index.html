@@ -11,9 +11,7 @@
       src: url('HARRYP__.TTF') format('truetype');
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -105,9 +103,7 @@
       height: 100vh;
       width: 100vw;
       background: rgba(0, 0, 0, 0.95);
-      font-family: 'HarryP', serif;
       z-index: 9999;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
@@ -127,24 +123,23 @@
       cursor: pointer;
     }
 
-    .scroll-content {
+    .popup-content {
+      background-image: url('pergamino-textura.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 30px;
+      border-radius: 12px;
       max-width: 600px;
-      background: #f5e2b8;
-      padding: 40px 30px;
-      border-radius: 20px;
-      color: #2e1f0f;
-      font-size: 1.2em;
-      animation: unfold 2s ease-out forwards;
+      color: #000;
+      animation: desplegarPergamino 1s ease forwards;
       transform-origin: top;
       opacity: 0;
+      transform: scaleY(0);
     }
 
-    @keyframes unfold {
-      0% {
-        transform: scaleY(0.1);
-        opacity: 0;
-      }
-      100% {
+    @keyframes desplegarPergamino {
+      to {
         transform: scaleY(1);
         opacity: 1;
       }
@@ -157,31 +152,11 @@
     }
 
     @media screen and (max-width: 600px) {
-      header h1 {
-        font-size: 2em;
-      }
-
-      header p,
-      .popup {
-        font-size: 1em;
-      }
-
-      .popup .close {
-        font-size: 2em;
-        top: 15px;
-        right: 15px;
-      }
-
-      .option {
-        font-size: 1em;
-      }
-
-      button {
-        width: 100%;
-      }
-      section p:last-of-type {
-        margin-bottom: 30px;
-      }
+      header h1 { font-size: 2em; }
+      header p, .popup { font-size: 1em; }
+      .popup .close { font-size: 2em; top: 15px; right: 15px; }
+      .option { font-size: 1em; }
+      button { width: 100%; }
     }
   </style>
 </head>
@@ -195,41 +170,39 @@
   </header>
 
   <section>
-    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena perfecta cada noche. 🌙</p>
-    <p>Y ahora, frente a ti, el reloj mágico ha sonado. El mago misterioso que susurra entre líneas ha estado preparando esta estación con amor y sortilegios, sabiendo que solo la viajera correcta será capaz de verla. Esta es solo la primera parada de un viaje lleno de magia, corazones latiendo con emoción y destinos escritos en tinta invisible. ✨</p>
+    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena o la carta de Hogwarts un día común. 🌙</p>
+    <p>Y ahora, frente a ti, el reloj mágico ha sonado. El mago misterioso que susurra entre líneas ha estado preparando esta estación con amor y sortilegios. ✨</p>
 
     <div class="survey">
       <h3>Selecciona todos los artículos para tu viaje encantado</h3>
       <form id="form">
         <label class="option"><input type="checkbox" name="regalo"> 📜 Un objeto encantado cuya historia aún no ha sido contada.</label>
-        <label class="option"><input type="checkbox" name="regalo"> 💌 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
-        <label class="option"><input type="checkbox" name="regalo"> 🧣 Algo cálido que huele a refugio, te parecerá familiar.</label>
+        <label class="option"><input type="checkbox" name="regalo"> 📬 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
+        <label class="option"><input type="checkbox" name="regalo"> 🧣 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
         <button type="submit" id="submitBtn" disabled>Estoy lista para el viaje 🚂</button>
       </form>
     </div>
   </section>
 
   <div class="popup" id="popupMsg">
-    <button class="close" onclick="closePopup()">✖</button>
-    <div class="scroll-content">
+    <button class="close" onclick="popup.classList.remove('active')">&#10006;</button>
+    <div class="popup-content">
       <p>🦉 <strong>Tu lechuza ya partió y está en camino.</strong></p>
-      <p>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio</strong> mágico que viene.</p>
+      <p>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</p>
       <p>Prepara tu corazón, lo maravilloso está por comenzar. ✨</p>
-      <p>Mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. 🔑🖤</p>
+      <p>Mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</p>
     </div>
   </div>
 
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
-
-  <audio id="scroll-sound" src="scroll.mp3" preload="auto"></audio>
 
   <script>
     const form = document.getElementById('form');
     const popup = document.getElementById('popupMsg');
     const checkboxes = form.querySelectorAll('input[type="checkbox"]');
     const button = document.getElementById('submitBtn');
-    const bgMusic = document.getElementById('bg-music');
-    const scrollSound = document.getElementById('scroll-sound');
+    const audio = document.getElementById('bg-music');
+    const pergaminoSound = new Audio('pergamino.mp3');
 
     checkboxes.forEach(cb => {
       cb.addEventListener('change', () => {
@@ -242,24 +215,20 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       popup.classList.add('active');
-      bgMusic.volume = 0.1;
-      scrollSound.play();
+      pergaminoSound.play();
+      audio.volume = 0.1;
+      setTimeout(() => { audio.volume = 1; }, 4000);
     });
 
-    function closePopup() {
-      popup.classList.remove('active');
-      bgMusic.volume = 1;
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        const resumeAudio = () => {
-          bgMusic.play().catch(() => {});
-          document.removeEventListener('click', resumeAudio);
-        };
-        document.addEventListener('click', resumeAudio);
-      }, 3000);
+      setTimeout(() => audio.play().catch(() => {}), 3000);
+      const resumeAudio = () => {
+        audio.play().catch(() => {});
+        document.removeEventListener('click', resumeAudio);
+      };
+      document.addEventListener('click', resumeAudio);
     });
   </script>
 </body>
 </html>
+
