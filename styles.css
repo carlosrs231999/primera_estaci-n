@@ -1,0 +1,60 @@
+
+@font-face {
+  font-family: 'HarryP';
+  src: url('HARRYP__.TTF') format('truetype');
+}
+
+body {
+  font-family: 'HarryP', serif;
+}
+
+.popup-content {
+  background-color: #fdf3d4;
+  padding: 30px 20px;
+  border: 8px solid #b2976b;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  max-width: 600px;
+  width: 90%;
+  animation: scrollOpen 1s ease-out forwards;
+  transform-origin: top;
+  overflow-wrap: break-word;
+}
+
+.popup-content p {
+  color: #1e1e1e;
+  line-height: 1.5em;
+}
+
+.popup .close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2em;
+  color: #ff4444;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10001;
+}
+
+@keyframes scrollOpen {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .popup-content {
+    font-size: 0.9em;
+  }
+  .popup .close {
+    font-size: 1.5em;
+    top: 10px;
+    right: 15px;
+  }
+}
