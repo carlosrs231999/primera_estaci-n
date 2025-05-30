@@ -10,177 +10,220 @@
       font-family: 'HarryP';
       src: url('HARRYP__.TTF') format('truetype');
     }
+
     * {
       box-sizing: border-box;
     }
+
     body {
       margin: 0;
       font-family: 'HarryP', serif;
-      background: #1c1c1c;
+      background-color: #0e0e0e;
       color: #fdf3d4;
+      line-height: 1.6;
       overflow-x: hidden;
-      line-height: 1.8;
     }
+
     header {
-      background: url('harry-potter.jpg') no-repeat center center;
-      background-size: cover;
+      background: url('hogwarts.gif') no-repeat center center/cover;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 0 20px;
+      box-shadow: inset 0 -20px 60px rgba(0, 0, 0, 0.7);
     }
+
     header h1 {
       font-size: 3em;
       color: #ffcc00;
+      text-shadow: 0 0 20px black;
     }
+
     header p {
-      font-size: 1.2em;
+      font-size: 1.3em;
+      max-width: 700px;
       color: #fff;
-      padding: 0 10vw;
+      text-shadow: 0 0 5px #000;
     }
+
     section {
-      padding: 80px 5vw 40px 5vw;
+      padding: 60px 5vw;
       max-width: 900px;
       margin: auto;
     }
+
     .survey {
-      margin-top: 60px;
-      background: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255,255,255,0.08);
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 0 20px #ffcc00;
+      box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
     }
+
     .survey h3 {
-      font-size: 1.8em;
+      font-size: 1.7em;
       color: #ffcc00;
       text-align: center;
-      margin-bottom: 30px;
     }
+
     .option {
       display: block;
-      margin: 15px 0;
-      font-size: 1.1em;
+      font-size: 1.2em;
+      margin: 10px 0;
     }
+
+    .option input {
+      margin-right: 10px;
+    }
+
     button {
       display: block;
       margin: 30px auto 0;
-      background: #ffcc00;
-      color: #000;
-      padding: 14px 30px;
+      padding: 14px 28px;
       font-size: 1.2em;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
+      background: #ffcc00;
+      font-family: 'HarryP', serif;
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: 0.5;
+      transition: 0.3s ease;
     }
+
     button.enabled {
       cursor: pointer;
       opacity: 1;
     }
+
     .popup {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
       height: 100vh;
+      width: 100vw;
       background: rgba(0, 0, 0, 0.95);
       color: #ffcc00;
-      font-size: 1.3em;
+      font-family: 'HarryP', serif;
+      font-size: 1.5em;
       text-align: center;
-      z-index: 9999;
       padding: 40px 20px;
-      overflow-y: auto;
-    }
-    .popup.active {
-      display: flex;
+      z-index: 9999;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
+
+    .popup.active {
+      display: flex;
+    }
+
     .popup .close {
       position: absolute;
       top: 20px;
-      right: 30px;
+      right: 20px;
       font-size: 2em;
-      color: #ffcc00;
+      color: #ff4444;
+      background: none;
+      border: none;
       cursor: pointer;
     }
+
     footer {
       text-align: center;
-      font-size: 1em;
-      padding: 20px;
-      color: #999;
+      padding: 30px;
+      color: #888;
     }
+
     @media screen and (max-width: 600px) {
-      header h1 { font-size: 2em; }
-      .popup { font-size: 1em; }
-      button { font-size: 1em; }
+      header h1 {
+        font-size: 2em;
+      }
+
+      header p,
+      .popup {
+        font-size: 1em;
+      }
+
+      .popup .close {
+        font-size: 2em;
+        top: 10px;
+        right: 15px;
+      }
+
+      .option {
+        font-size: 1em;
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Estación 1: Andén 9¾</h1>
-    <p>Un tren mágico espera, y solo TÚ decides si emprender este viaje encantado junto a mí.</p>
+    <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
+    <audio id="bg-music" preload="auto" loop>
+      <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
+    </audio>
   </header>
+
   <section>
-    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena o la carta de Hogwarts un día común. 🌜</p>
+    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena o la carta de Hogwarts un día común. 🌙</p>
     <p>Y ahora, frente a ti, el reloj mágico ha sonado. El mago misterioso que susurra entre líneas ha estado preparando esta estación con amor y sortilegios, sabiendo que solo la viajera correcta será capaz de verla. Esta es solo la primera parada de un viaje lleno de magia, corazones latiendo con emoción y destinos escritos en tinta invisible. ✨</p>
 
     <div class="survey">
       <h3>Selecciona todos los artículos para tu viaje encantado</h3>
       <form id="form">
-        <label class="option"><input type="checkbox"> 📜 Un objeto encantado cuya historia aún no ha sido contada.</label>
-        <label class="option"><input type="checkbox"> 💎 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
-        <label class="option"><input type="checkbox"> 🧳 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
-        <button id="submitBtn" type="submit" disabled>Estoy lista para el viaje 🚂</button>
+        <label class="option"><input type="checkbox" name="regalo"> 📜 Un objeto encantado cuya historia aún no ha sido contada.</label>
+        <label class="option"><input type="checkbox" name="regalo"> 📬 Una carta sellada con magia, escrita con tinta invisible que solo el corazón puede leer.</label>
+        <label class="option"><input type="checkbox" name="regalo"> 🧳 Algo cálido que huele a hogar, aunque nunca lo hayas visitado.</label>
+        <button type="submit" id="submitBtn" disabled>Estoy lista para el viaje 🚂</button>
       </form>
     </div>
   </section>
+
   <div class="popup" id="popupMsg">
-    <div class="close" id="closePopup">&times;</div>
-    <p>🦉 <strong>Tu lechuza ya partió y está en camino.</strong><br><br>
-    Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.<br><br>
-    Prepara tu corazón, lo maravilloso está por comenzar. ✨<br><br>
-    Cuando menos lo esperes, mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</p>
+    <button class="close" onclick="popup.classList.remove('active')">&times;</button>
+    <p>🦉 <strong>Tu lechuza ya partió y está en camino.</strong></p>
+    <p>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</p>
+    <p>Prepara tu corazón, lo maravilloso está por comenzar. ✨</p>
+    <p>Cuando menos lo esperes, mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</p>
   </div>
+
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
-  <audio id="bg-music" preload="auto" loop>
-    <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
-  </audio>
+
   <script>
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const btn = document.getElementById('submitBtn');
     const form = document.getElementById('form');
     const popup = document.getElementById('popupMsg');
-    const closePopup = document.getElementById('closePopup');
-    const music = document.getElementById('bg-music');
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    const button = document.getElementById('submitBtn');
+    const audio = document.getElementById('bg-music');
 
-    document.body.addEventListener('click', () => {
-      music.play().catch(() => {});
-    }, { once: true });
+    document.addEventListener('DOMContentLoaded', () => {
+      // Requiere interacción para dispositivos móviles
+      document.body.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().catch(() => {});
+        }
+      }, { once: true });
+    });
 
     checkboxes.forEach(cb => {
       cb.addEventListener('change', () => {
         const allChecked = [...checkboxes].every(c => c.checked);
-        btn.disabled = !allChecked;
-        btn.classList.toggle('enabled', allChecked);
+        button.disabled = !allChecked;
+        button.classList.toggle('enabled', allChecked);
       });
     });
 
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
       popup.classList.add('active');
-    });
-
-    closePopup.addEventListener('click', () => {
-      popup.classList.remove('active');
-      form.reset();
-      btn.disabled = true;
-      btn.classList.remove('enabled');
     });
   </script>
 </body>
