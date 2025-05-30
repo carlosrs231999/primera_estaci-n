@@ -93,6 +93,10 @@
     .survey .option:hover {
       background-color: rgba(255, 255, 255, 0.15);
     }
+    .survey .option.selected {
+      background-color: rgba(255, 204, 0, 0.3);
+      font-weight: bold;
+    }
     .survey input[type="text"] {
       padding: 10px;
       width: 100%;
@@ -133,6 +137,23 @@
       from { opacity: 0; transform: translate(-50%, -60%); }
       to { opacity: 1; transform: translate(-50%, -50%); }
     }
+    .floating-hat {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Sorting_hat.png');
+      background-repeat: no-repeat;
+      background-size: 100px;
+      animation: floatHat 20s linear infinite;
+    }
+    @keyframes floatHat {
+      0% { transform: translate(0, 100vh) rotate(0deg); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: translate(100vw, -100vh) rotate(360deg); opacity: 0; }
+    }
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -163,22 +184,23 @@
   </style>
 </head>
 <body>
+  <div class="floating-hat"></div>
   <header>
     <h1>Estación 1: Andén 9¾</h1>
-    <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí. Entre líneas, una carta te invita a comenzar una historia que no tiene final escrito.</p>
+    <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
     <button id="music-btn" title="Presiona para pausar">🔇</button>
     <audio id="bg-music" autoplay preload="auto" loop>
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
     </audio>
   </header>
   <section>
-    <h2>Tu primer paso en el mundo mágico</h2>
-    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, tejida con hechizos, cartas, y aventuras inesperadas. Como invitada especial de Hogwarts, te damos la bienvenida con este pequeño cuestionario para tu kit mágico inicial:</p>
+    <h2>Bienvenida a un mundo mágico</h2>
+    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa.</p>
     <div class="survey">
-      <h3>Selecciona tus artículos para el viaje encantado</h3>
+      <h3>Selecciona todos los artículos para tu viaje encantado</h3>
       <form id="lechuzaForm">
         <label class="option"><input type="checkbox" name="regalo" value="rana"> 🐸 Rana de chocolate – cada una trae una tarjeta de mago famoso, ¿cuál te tocará?</label>
-        <label class="option"><input type="checkbox" name="regalo" value="carta"> ✉️ Carta de amor – la llave para empezar esta aventura mágica que aún no sabes a dónde llegará.</label>
+        <label class="option"><input type="checkbox" name="regalo" value="carta"> 💌 Carta de amor – la llave para empezar esta aventura mágica.</label>
         <label class="option"><input type="checkbox" name="regalo" value="bufanda"> 🧣 Bufanda de tu casa de Hogwarts – para mantenerte cálida mientras viajas por este nuevo camino.</label>
         <input type="text" name="direccion" placeholder="Escribe aquí tu dirección secreta" required>
         <button type="submit">Enviar por lechuza 🦉</button>
@@ -191,6 +213,14 @@
     const music = document.getElementById('bg-music');
     const btn = document.getElementById('music-btn');
     let isPlaying = true;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      music.play().catch(() => {
+        document.body.addEventListener('click', () => {
+          music.play();
+        }, { once: true });
+      });
+    });
 
     btn.addEventListener('click', () => {
       if (isPlaying) {
@@ -205,6 +235,13 @@
 
     const form = document.getElementById('lechuzaForm');
     const popup = document.getElementById('popupMsg');
+    const options = document.querySelectorAll('.survey .option');
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        option.classList.toggle('selected');
+      });
+    });
 
     form.addEventListener('submit', function(event) {
       event.preventDefault();
@@ -212,7 +249,15 @@
       setTimeout(() => {
         popup.style.display = 'none';
         form.reset();
+        options.forEach(o => o.classList.remove('selected'));
       }, 3000);
+
+      const formData = new FormData(form);
+      fetch('https://formsubmit.co/ajax/crodriguez.salda@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
     });
   </script>
 </body>
