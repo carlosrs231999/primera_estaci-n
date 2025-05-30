@@ -1,1 +1,252 @@
-<!-- Contenido generado previamente será restaurado aquí en el siguiente paso -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estación 1: Andén 9¾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Roboto&display=swap" rel="stylesheet"/>
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3448/3448603.png"/>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #0e0e0e, #2c2c2c);
+      color: #fdf3d4;
+      overflow-x: hidden;
+    }
+    header {
+      background-image: url('harry-potter.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      padding: 0 5vw;
+      box-shadow: inset 0 -20px 60px rgba(0, 0, 0, 0.7);
+    }
+    header h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 3.5em;
+      color: #ffcc00;
+      text-shadow: 0 0 20px black;
+    }
+    header p {
+      font-size: 1.2em;
+      max-width: 700px;
+      color: #fff;
+      text-shadow: 0 0 5px #000;
+    }
+    #music-btn {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #ffcc00;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.4em;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    section {
+      padding: 60px 5vw;
+      max-width: 900px;
+      margin: auto;
+      position: relative;
+    }
+    .survey {
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 40px 20px;
+      border-radius: 15px;
+      margin-top: 40px;
+      box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+      backdrop-filter: blur(5px);
+    }
+    .survey h3 {
+      font-size: 1.8em;
+      color: #f0d58c;
+      margin-bottom: 20px;
+    }
+    .survey .option {
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.05);
+      margin: 10px 0;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.1em;
+    }
+    .survey .option input[type="radio"] {
+      margin-right: 10px;
+      accent-color: #ffcc00;
+    }
+    .survey .option:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    .survey .option.selected {
+      background-color: rgba(255, 204, 0, 0.3);
+      font-weight: bold;
+    }
+    .survey input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 1em;
+    }
+    .survey button {
+      margin-top: 20px;
+      background-color: #ffcc00;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .survey button:hover {
+      background-color: #e6b800;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #1e1e1e;
+      color: #ffcc00;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-size: 1.4em;
+      box-shadow: 0 0 30px rgba(255, 204, 0, 0.6);
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -60%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    .floating-hat {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6e/Sorting_hat.png');
+      background-repeat: no-repeat;
+      background-size: 100px;
+      animation: floatHat 20s linear infinite;
+    }
+    @keyframes floatHat {
+      0% { transform: translate(0, 100vh) rotate(0deg); opacity: 0; }
+      30% { opacity: 1; }
+      100% { transform: translate(100vw, -100vh) rotate(360deg); opacity: 0; }
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      padding: 20px;
+      color: #aaa;
+      border-top: 1px solid #333;
+    }
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2em;
+      }
+      header p {
+        font-size: 1em;
+      }
+      .survey h3 {
+        font-size: 1.4em;
+      }
+      .survey .option {
+        font-size: 0.95em;
+      }
+      .survey button {
+        width: 100%;
+      }
+      section {
+        padding: 30px 5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hat"></div>
+  <header>
+    <h1>Estación 1: Andén 9¾</h1>
+    <p>Un tren mágico espera, y solo tú decides si emprender este viaje encantado junto a mí.</p>
+    <button id="music-btn" title="Presiona para pausar">🔇</button>
+    <audio id="bg-music" autoplay preload="auto" loop>
+      <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
+    </audio>
+  </header>
+  <section>
+    <h2>Bienvenida a un mundo mágico</h2>
+    <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa.</p>
+    <div class="survey">
+      <h3>¿Qué souvenir mágico quieres recibir en esta estación?</h3>
+      <form id="lechuzaForm">
+        <label class="option"><input type="radio" name="regalo" value="chocolate"> 🍫 Chocolate de Honeydukes – endulza tus días como lo hacía Ron.</label>
+        <label class="option"><input type="radio" name="regalo" value="rana"> 🐸 Rana de chocolate – cada una trae una tarjeta de mago famoso, ¿cuál te tocará?</label>
+        <label class="option"><input type="radio" name="regalo" value="amor"> 🧪 Poción de Amor – su aroma es diferente para cada persona... ¿a qué olerá para ti?</label>
+        <label class="option"><input type="radio" name="regalo" value="bufanda"> 🧣 Bufanda de tu casa de Hogwarts – para mantenerte cálida mientras viajas por este nuevo camino.</label>
+        <input type="text" name="direccion" placeholder="Escribe aquí tu dirección secreta" required>
+        <button type="submit">Enviar por lechuza 🦉</button>
+      </form>
+      <div class="popup" id="popupMsg">🦉 ¡Lechuza en camino!</div>
+    </div>
+  </section>
+  <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
+  <script>
+    const music = document.getElementById('bg-music');
+    const btn = document.getElementById('music-btn');
+    let isPlaying = true;
+
+    btn.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        btn.textContent = '🎵';
+      } else {
+        music.play();
+        btn.textContent = '🔇';
+      }
+      isPlaying = !isPlaying;
+    });
+
+    const form = document.getElementById('lechuzaForm');
+    const popup = document.getElementById('popupMsg');
+    const options = document.querySelectorAll('.survey .option');
+
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        option.querySelector('input').checked = true;
+      });
+    });
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      popup.style.display = 'block';
+      setTimeout(() => {
+        popup.style.display = 'none';
+        form.reset();
+        options.forEach(o => o.classList.remove('selected'));
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
