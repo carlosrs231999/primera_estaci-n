@@ -14,53 +14,56 @@
       margin: 0;
       font-family: 'HarryP', serif;
       background: linear-gradient(to bottom, #0e0e0e, #2c2c2c);
+      background-image: url('hogwarts.gif');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
       color: #fdf3d4;
       line-height: 1.8;
-      font-size: 1.2em;
+      letter-spacing: 0.8px;
       overflow-x: hidden;
     }
     header {
-      background-image: url('hogwarts.gif');
-      background-size: cover;
-      background-position: center;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      box-shadow: inset 0 -20px 60px rgba(0, 0, 0, 0.7);
+      padding: 0 20px;
+      backdrop-filter: brightness(0.4);
     }
     header h1 {
-      font-size: 3em;
+      font-size: 3.2em;
       color: #ffcc00;
       text-shadow: 0 0 20px black;
     }
     header p {
       font-size: 1.3em;
-      color: #fff;
       max-width: 700px;
-      padding: 0 20px;
+      color: #fff;
     }
     section {
-      max-width: 800px;
+      max-width: 850px;
       margin: 40px auto;
       padding: 0 20px;
+      backdrop-filter: brightness(0.4);
     }
     .survey {
-      background-color: rgba(255,255,255,0.08);
+      background-color: rgba(0,0,0,0.6);
       padding: 30px;
       border-radius: 15px;
       box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
     }
     .survey h3 {
       color: #ffcc00;
-      font-size: 1.6em;
+      font-size: 1.8em;
       text-align: center;
     }
     .option {
       margin: 15px 0;
       display: block;
+      font-size: 1.2em;
     }
     .popup {
       display: none;
@@ -69,9 +72,9 @@
       left: 0;
       height: 100vh;
       width: 100vw;
-      background: rgba(0,0,0,0.95);
+      background: rgba(0,0,0,0.94);
       color: #ffcc00;
-      font-size: 1.5em;
+      font-size: 1.6em;
       font-family: 'HarryP', serif;
       text-align: center;
       padding: 40px 20px;
@@ -85,23 +88,29 @@
     }
     button {
       display: block;
-      margin: 20px auto 0;
-      padding: 14px 24px;
-      border: none;
-      border-radius: 8px;
+      margin: 30px auto 0;
+      padding: 15px 30px;
+      border: 3px solid #ffcc00;
+      border-radius: 12px;
       background: #ffcc00;
       color: #000;
-      font-size: 1em;
+      font-family: 'HarryP', serif;
+      font-size: 1.3em;
       cursor: pointer;
-      opacity: 0.6;
+      opacity: 0.5;
+      transition: 0.3s ease-in-out;
+      box-shadow: inset 0 0 10px #fff3, 0 0 15px #0008;
     }
     button.enabled {
       opacity: 1;
+      cursor: pointer;
     }
     footer {
       text-align: center;
-      padding: 30px 10px;
-      color: #999;
+      padding: 20px;
+      color: #aaa;
+      font-family: 'HarryP', serif;
+      backdrop-filter: brightness(0.4);
     }
   </style>
 </head>
@@ -113,8 +122,11 @@
       <source src="hogwarts-express-inspired-by-harry-potter-305578.mp3" type="audio/mpeg">
     </audio>
   </header>
+
   <section>
     <p>Desde este andén parte más que un tren. Parte una historia entre tú y yo, escrita con hechizos, cartas y aventuras sin mapa. He esperado este momento durante mucho tiempo, como se espera la luna llena o la carta de Hogwarts un día común. 🌙</p>
+    <p>Y ahora, frente a ti, el reloj mágico ha sonado. El mago misterioso que susurra entre líneas ha estado preparando esta estación con amor y sortilegios, sabiendo que solo la viajera correcta sería capaz de verla. Esta es solo la primera parada de un viaje lleno de magia, corazones latiendo con emoción y destinos escritos en tinta invisible. ✨</p>
+
     <div class="survey">
       <h3>Selecciona todos los artículos para tu viaje encantado</h3>
       <form id="form">
@@ -125,15 +137,17 @@
       </form>
     </div>
   </section>
+
   <div class="popup" id="popupMsg">
     🦉 <div>Tu lechuza ya partió y está en camino.</div>
     <div>Llegará exactamente a las <strong>5:30 PM</strong> del <strong>domingo 1 de junio mágico que viene</strong>.</div>
     <div>Prepara tu corazón, lo maravilloso está por comenzar. ✨</div>
     <br>
-    <div>🪄 Mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación.<br>
-    La misma persona que te compartió esta invitación te dirá cuándo el objeto esté en tu poder.</div>
+    <div>Cuando menos lo esperes, mediante el hechizo <strong>Accio</strong>, aparecerá la <strong>llave negra</strong> para la segunda estación. La misma persona que te compartió esta invitación te indicará cuándo el objeto esté en tu poder. 🔑🖤</div>
   </div>
+
   <footer>Hecho con magia por tu futuro compañero de aventuras ✨</footer>
+
   <script>
     const form = document.getElementById('form');
     const popup = document.getElementById('popupMsg');
@@ -156,7 +170,7 @@
         form.reset();
         button.disabled = true;
         button.classList.remove('enabled');
-      }, 7000);
+      }, 9000);
     });
   </script>
 </body>
